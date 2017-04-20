@@ -1,7 +1,7 @@
 {
   "name": "babel-preset-p2m-library",
   "version": "1.0.0",
-  "description": "A babel preset to help Shanghai P2M to make library quickly.",
+  "description": "A babel preset used by Shanghai PTM company to build shared library.",
   "main": "index.js",
   "repository": "https://github.com/colin-han/babel-preset-p2m-library.git",
   "author": "Colin Han <biz@colinhan.info>",
