@@ -1,0 +1,22 @@
+{
+  "name": "babel-preset-p2m-library",
+  "version": "1.0.0",
+  "description": "A babel preset to help Shanghai P2M to make library quickly.",
+  "main": "index.js",
+  "repository": "https://github.com/colin-han/babel-preset-p2m-library.git",
+  "author": "Colin Han <biz@colinhan.info>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-plugin-dotenv": "^0.0.2",
+    "babel-plugin-transform-define": "^1.2.0",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1"
+  },
+  "peerDependencies": {
+    "dotenv": "^4.0.0"
+  }
+}
