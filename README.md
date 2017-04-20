@@ -33,11 +33,11 @@ This preset use [babel-plugin-dotenv](https://www.npmjs.com/package/babel-plugin
 transform pre-define variable on build time. When you use this function, please ensure that
 you had add `dotenv` as dependency of your project. 
 
-You can add `build.env` file in root folder of 
+You can add `.build.env` file in root folder of 
 your project as following:
 
 ```bash
-# build.env
+# .build.env
 API_HOST=http://localhost:8080
 ```
 
@@ -56,12 +56,12 @@ console.log('http://localhost:8080');
 ```
 
 In addition, this plugin support multiple env file for different environment. By default, it
-load `build.env.development` file if it existed. If you set NODE_ENV or BABEL_ENV to `production`
-this plugin will load `build.env.production` file.
+load `.build.env.development` file if it existed. If you set NODE_ENV or BABEL_ENV to `production`
+this plugin will load `.build.env.production` file.
 
 ## Production version
 This preset use BABEL_ENV or NODE_ENV to determinate whether `production` version or not. by
 default it is `development` version, the js file is not minified. When you change the environment
 to `production`, the babel engine will minified all js output.
 
-In addition, you can use `build.env.production` to do more control in code. 
+In addition, you can use `.build.env.production` to do more control in code. 
