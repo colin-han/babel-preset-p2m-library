@@ -30,7 +30,10 @@ So you can use all flow syntex in your js file.
 
 ## Build environment
 This preset use [babel-plugin-dotenv](https://www.npmjs.com/package/babel-plugin-dotenv) to
-transform pre-define variable on build time. You can add `build.env` file in root folder of 
+transform pre-define variable on build time. When you use this function, please ensure that
+you had add `dotenv` as dependency of your project. 
+
+You can add `build.env` file in root folder of 
 your project as following:
 
 ```bash
@@ -46,7 +49,7 @@ import {API_HOST} from 'dotenv';
 console.log(API_HOST);
 ```
 
-Variable `API_HOST` will be replaced. the output could be like follow.
+Variable `API_HOST` will be replaced when build this project. the output could be like follow.
 
 ```javascript
 console.log('http://localhost:8080');
