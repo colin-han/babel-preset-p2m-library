@@ -16,7 +16,8 @@ Include this preset into .babelrc as following:
 }
 ```
 
-If you set `browser` to `true`, the output will follow `UMD` standard. Otherwise,
+Notice: If you set `browser` to `true`, the output will follow `UMD` standard. In this 
+case, please make sure you has `moduleId` setting in `.babelrc` file. By default,
 output will follow `commonjs` standard.
 
 # Features
@@ -56,7 +57,7 @@ console.log('http://localhost:8080');
 ```
 
 In addition, this plugin support multiple env file for different environment. By default, it
-load `.build.env.development` file if it existed. If you set NODE_ENV or BABEL_ENV to `production`
+load `.build.env.development` file if it existed. If you set `NODE_ENV` or `BABEL_ENV` to `production`
 this plugin will load `.build.env.production` file.
 
 ## Production version
