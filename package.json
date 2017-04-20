@@ -7,14 +7,13 @@
   "author": "Colin Han <biz@colinhan.info>",
   "license": "MIT",
   "dependencies": {
-    "babel-plugin-dotenv": "^0.0.2",
-    "babel-plugin-transform-define": "^1.2.0",
     "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
-    "babel-preset-react": "^6.24.1"
+    "babel-preset-react": "^6.24.1",
+    "react-native-dotenv": "git+https://github.com/colin-han/react-native-dotenv.git#v0.1.0"
   },
   "peerDependencies": {
     "dotenv": "^4.0.0"

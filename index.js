@@ -8,8 +8,7 @@ const presetFlow = require('babel-preset-flow');
 const presetReact = require('babel-preset-react');
 
 const pluginUmd = require('babel-plugin-transform-es2015-modules-umd');
-const pluginDefine = require('babel-plugin-transform-define');
-const pluginDotenv = require('babel-plugin-dotenv');
+const pluginDotenv = require('react-native-dotenv/babel-plugin-dotenv');
 
 const defaultOptions = {
   react: false,
