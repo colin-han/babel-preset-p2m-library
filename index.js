@@ -8,7 +8,7 @@ const presetFlow = require('babel-preset-flow');
 const presetReact = require('babel-preset-react');
 
 const pluginUmd = require('babel-plugin-transform-es2015-modules-umd');
-const pluginDotenv = require('react-native-dotenv/babel-plugin-dotenv');
+const pluginDotenv = require('babel-plugin-dotenv');
 
 const defaultOptions = {
   react: false,
@@ -38,7 +38,7 @@ module.exports = function (context, opts = {}) {
         opts.browser && pluginUmd,
         [pluginDotenv, {
           replacedModuleName: 'dotenv',
-          filename: '.build.env',
+          //filename: '.build.env',
         }]
     ].filter(Boolean),
   };
