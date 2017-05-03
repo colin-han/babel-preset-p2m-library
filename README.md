@@ -4,7 +4,7 @@ A babel preset used by Shanghai PTM company to build shared library.
 
 # Usage
 Include this preset into .babelrc as following:
-``` javascript 
+```javascript
 {
   "presets": [
     ["p2m-library",
@@ -12,6 +12,9 @@ Include this preset into .babelrc as following:
          "browser": false, // generator library for browser, otherwise, it is for node.js
          "moduleId": "your/module/id", 
          "react": false, // support react jsx syntax
+         "globals": {
+           "jquery": "$"
+         }
        }
     ]]
 }
