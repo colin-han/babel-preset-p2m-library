@@ -64,4 +64,95 @@ This preset use BABEL_ENV or NODE_ENV to determinate whether `production` versio
 default, it is `development` version, All js files are not minified. If you change the environment
 to `production`, the babel engine will minified all js files.
 
-In addition, you can use `.env.production` to do more control in code. 
+In addition, you can use `.env.production` to do more control in code.
+ 
+## Browser support
+If you turn on `browser` option, this preset will build js file as an `UMD` module. In this case
+you must specified `moduleId` option. This option should be a `/` separated string. For example:
+
+```javascript
+["p2m-library", {
+  "browser": true,
+  "moduleId": "p2m/message/client"
+}]
+```
+
+Thus, the following javascript file
+
+```javascript
+export default 'abc';
+```
+
+will be compiled as fillowing:
+
+```javascript
+(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
+    define("p2m/message/client", ["exports"], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global.p2m = global.p2m || {};
+    global.p2m.message = global.p2m.message || {};
+    global.p2m.message.client = mod.exports;
+  }
+})(this, function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = "abc";
+});
+```
+
+If you use some external modules, you can use `globals` option to specified global variable for
+these libraries. For example, if you want use jquery. You can add following options.
+
+```javascript
+["p2m-library", {
+  "browser": true,
+  "moduleId": "p2m/message/client",
+  "globals": {
+    "jquery": "$"
+  }
+}]
+```
+
+Result is just like following:
+
+source:
+```javascript
+const jq = require('jquery');
+export default jq('div');
+```
+
+output:
+```javascript
+(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
+    define('p2m/message/client', ['exports', 'jquery'], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(exports, require('jquery'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports, global.$);
+    global.p2m = global.p2m || {};
+    global.p2m.message = global.p2m.message || {};
+    global.p2m.message.client = mod.exports;
+  }
+})(this, function (exports, jq) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = jq('div');
+});
+```

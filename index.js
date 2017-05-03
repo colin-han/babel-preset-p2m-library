@@ -9,11 +9,13 @@ const presetReact = require('babel-preset-react');
 
 const pluginUmd = require('babel-plugin-transform-es2015-modules-umd');
 const pluginDotenv = require('babel-plugin-dotenv');
+const path = require('path');
 
 const defaultOptions = {
   react: false,
   browser: false,
   env: 'development',
+  globals: {},
 };
 
 function normalize(opts) {
@@ -21,6 +23,16 @@ function normalize(opts) {
 }
 module.exports = function (context, opts = {}) {
   opts = normalize(opts);
+
+  let globals = opts.globals, moduleId = opts.moduleId;
+  if (opts.browser) {
+    if (!moduleId) {
+      throw new Error('"moduleId" option is required if your turn on "browser" option');
+    }
+    globals[moduleId] = moduleId.replace(/\//g, '.');
+  }
+  //console.log(context.util, Object.keys(context));
+  //console.log(path.resolve('.'));
 
   let DEBUG = (process.env.BABEL_ENV === 'development' || !process.env.BABEL_ENV);
 
@@ -35,12 +47,16 @@ module.exports = function (context, opts = {}) {
       opts.react && presetReact,
     ].filter(Boolean),
     plugins: [
-        opts.browser && pluginUmd,
-        [pluginDotenv, {
-          replacedModuleName: 'dotenv',
-          //filename: '.build.env',
-        }]
+      opts.browser && [pluginUmd, {
+        "exactGlobals": true,
+        globals,
+      }],
+      [pluginDotenv, {
+        replacedModuleName: 'dotenv',
+        //filename: '.build.env',
+      }]
     ].filter(Boolean),
+    moduleId,
   };
 
   return base;
