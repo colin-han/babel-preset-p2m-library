@@ -10,15 +10,12 @@ Include this preset into .babelrc as following:
     ["p2m-library",
        {
          "browser": false, // generator library for browser, otherwise, it is for node.js
+         "moduleId": "your/module/id", 
          "react": false, // support react jsx syntax
        }
     ]]
 }
 ```
-
-Notice: If you set `browser` to `true`, the output will follow `UMD` standard. In this 
-case, please make sure you has `moduleId` setting in `.babelrc` file. By default,
-output will follow `commonjs` standard.
 
 # Features
 
