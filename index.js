@@ -9,7 +9,6 @@ const presetReact = require('babel-preset-react');
 
 const pluginUmd = require('babel-plugin-transform-es2015-modules-umd');
 const pluginDotenv = require('babel-plugin-dotenv');
-const path = require('path');
 
 const defaultOptions = {
   react: false,
@@ -24,6 +23,9 @@ function normalize(opts) {
 module.exports = function (context, opts = {}) {
   opts = normalize(opts);
 
+  let env = process.env.BABEL_ENV || process.env.NODE_ENV || 'development';
+  let DEBUG = (env === 'development');
+
   let globals = opts.globals, moduleId = opts.moduleId;
   if (opts.browser) {
     if (!moduleId) {
@@ -31,12 +33,8 @@ module.exports = function (context, opts = {}) {
     }
     globals[moduleId] = moduleId.replace(/\//g, '.');
   }
-  //console.log(context.util, Object.keys(context));
-  //console.log(path.resolve('.'));
 
-  let DEBUG = (process.env.BABEL_ENV === 'development' || !process.env.BABEL_ENV);
-
-  let base = {
+  return {
     comments: DEBUG,
     minified: !DEBUG,
     presets: [
@@ -58,6 +56,4 @@ module.exports = function (context, opts = {}) {
     ].filter(Boolean),
     moduleId,
   };
-
-  return base;
 };
