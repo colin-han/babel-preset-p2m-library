@@ -1,6 +1,7 @@
 /**
  * Created by colinhan on 18/04/2017.
  */
+const presetBabili = require("babel-preset-babili");
 const presetES2015 = require("babel-preset-es2015");
 const presetES2016 = require("babel-preset-es2016");
 const presetES2017 = require("babel-preset-es2017");
@@ -34,10 +35,13 @@ module.exports = function (context, opts = {}) {
     globals[moduleId] = moduleId.replace(/\//g, '.');
   }
 
+  let minified = (!DEBUG && opts.browser);
+
   return {
     comments: DEBUG,
-    minified: !DEBUG,
+    minified,
     presets: [
+      minified && presetBabili,
       presetES2015,
       presetES2016,
       presetES2017,

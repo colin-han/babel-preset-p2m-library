@@ -61,8 +61,9 @@ this plugin will load `.env.production` file.
 
 ## Production version
 This preset use BABEL_ENV or NODE_ENV to determinate whether `production` version or not. by
-default, it is `development` version, All js files are not minified. If you change the environment
-to `production`, the babel engine will minified all js files.
+default, it is `development` version, All js files are not minified in this case. If you change 
+the environment to `production`, for browser style output, the babel engine will *minified* all js
+files. But for node.js style output, they still are *unminified*.
 
 In addition, you can use `.env.production` to do more control in code.
  
